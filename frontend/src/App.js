@@ -1,6 +1,15 @@
+
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
+
+/**
+ * React component representing the main App.
+ *
+ * @component
+ * @return {JSX.Element} The rendered App component.
+ */
 function App() {
   return (
     <div className="App">
