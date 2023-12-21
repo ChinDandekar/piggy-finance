@@ -1,9 +1,24 @@
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
-import React from 'react';
+import { QueryClient, QueryClientProvider } from "react-query";
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const queryClient = new QueryClient();
+const axiosMock = new AxiosMockAdapter(axios);
+
+beforeEach(() => {
+  axiosMock.onGet("/api/get").reply(200, {data: "Hello from Python Backend at"});
+});
+
+test('renders response', async () => {
+  render(
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  );
+  const responseElement = screen.getByText(/response:/);
+  const response = await screen.findByText(/Hello from Python Backend at/);
+  expect(responseElement).toBeInTheDocument();
+  expect(response).toBeInTheDocument();
 });
