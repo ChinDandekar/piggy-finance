@@ -6,7 +6,7 @@ import datetime
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/app/get')
+@app.route('/api/get')
 def get_message():
     curTime = time()
     curDateTime =  datetime.datetime.fromtimestamp(curTime).strftime('%Y-%m-%d %H:%M:%S')

@@ -18,8 +18,8 @@ function App() {
   const { data: dataResponse, error: _error, status: _status } =
   useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/app/get"],
-      { method: "GET", url: "/app/get" },
+      ["/api/get"],
+      { method: "GET", url: "/api/get" },
       []
   );
   
