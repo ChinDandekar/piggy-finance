@@ -1,7 +1,8 @@
-
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import { useBackend } from './utils/useBackend';
+
 
 
 /**
@@ -11,12 +12,26 @@ import React from 'react';
  * @return {JSX.Element} The rendered App component.
  */
 function App() {
+
+  var response = "couldn't connect to backend";
+
+  console.log('About to make GET request to /api/get');
+  const { data: dataResponse, error: _error, status: _status } =
+  useBackend(
+      // Stryker disable next-line all : don't test internal caching of React Query
+      ["/api/get"],
+      { method: "GET", url: "/api/get" },
+      []
+  );
+  
+  response = dataResponse;
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          response: {response}
         </p>
         <a
           className="App-link"

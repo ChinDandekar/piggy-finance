@@ -20,6 +20,10 @@ package-lock.json
 
 /target
 
+## Python venv ##
+backend/piggy-finance-venv/*
+backend/piggy-finance-venv
+
 ### STS ###
 .apt_generated
 .classpath
