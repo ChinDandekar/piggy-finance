@@ -8,6 +8,7 @@ const queryClient = new QueryClient();
 const axiosMock = new AxiosMockAdapter(axios);
 
 beforeEach(() => {
+  axiosMock.reset();
   axiosMock.onGet("/api/get").reply(200, {data: "Hello from Python Backend at"});
 });
 
