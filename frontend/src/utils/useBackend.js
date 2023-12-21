@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 // );
 
 const flaskApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/', // Replace with your Flask app's URL
+    baseURL: 'http://0.0.0.0:8000/', // Replace with your Flask app's URL
   });
   
 

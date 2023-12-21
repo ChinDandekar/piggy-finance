@@ -12,5 +12,5 @@ def get_message():
     curDateTime =  datetime.datetime.fromtimestamp(curTime).strftime('%Y-%m-%d %H:%M:%S')
     return f'Hello from Python Backend at {curDateTime}'
 
-if __name__ == '__main__':
-    app.run(port=8000)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=8000)
