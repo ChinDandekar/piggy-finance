@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
+import flaskApi from "./flaskApi";
 
 // example
 //  queryKey ["/api/users/all"] for "api/users/all"
@@ -25,9 +26,7 @@ import { toast } from "react-toastify";
 //     []
 // );
 
-const flaskApi = axios.create({
-    baseURL: 'http://0.0.0.0:8000/', // Replace with your Flask app's URL
-  });
+
   
 
 export function useBackend(queryKey, axiosParameters, initialData) {
