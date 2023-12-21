@@ -6,10 +6,12 @@ import AxiosMockAdapter from "axios-mock-adapter";
 
 const queryClient = new QueryClient();
 const axiosMock = new AxiosMockAdapter(axios);
+console.log('Setting up mock for /api/get');
 
 beforeEach(() => {
   axiosMock.reset();
   axiosMock.onGet("/api/get").reply(200, {data: "Hello from Python Backend at"});
+  console.log('Mock for /api/get set up successfully');
 });
 
 test('renders response', async () => {
