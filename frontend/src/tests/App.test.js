@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 import { QueryClient, QueryClientProvider } from "react-query";
-import axios from "axios";
+import flaskApi from '../utils/flaskApi';
 import AxiosMockAdapter from "axios-mock-adapter";
 
 const queryClient = new QueryClient();
-const axiosMock = new AxiosMockAdapter(axios);
+const axiosMock = new AxiosMockAdapter(flaskApi);
 console.log('Setting up mock for /api/get');
 
 beforeEach(() => {
   axiosMock.reset();
-  axiosMock.onGet("/api/get").reply(200, {data: "Hello from Python Backend at"});
+  axiosMock.onGet("/api/get").reply(200, "Hello from Python Backend at");
   console.log('Mock for /api/get set up successfully');
 });
 
