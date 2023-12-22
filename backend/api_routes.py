@@ -16,11 +16,10 @@ def get_message():
 
 @api_blueprint.route('/post_time', methods=['POST', 'GET'])
 def post_time():
-    return jsonify({'message': 'Time posted successfully', 'request': request}), 200
     table = current_app.config['DYNAMODB_TABLE']
     id = request.args.get('ID', default=None)
     time = request.args.get('Time', default=None)
-    return jsonify({'message': 'Time posted successfully', 'ID': id, 'Time': time, 'request': request}), 200
+    return jsonify({'message': 'Time posted successfully', 'ID': id, 'Time': time}), 200
     try:
         # Inserting the item into DynamoDB
         response = table.put_item(
