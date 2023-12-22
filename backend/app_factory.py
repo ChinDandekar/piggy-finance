@@ -8,9 +8,11 @@ def create_app(config_object='settings_module.ConfigClass'):
     app = Flask(__name__)
     app.config.from_object(config_object)
     
+    # Connect to DynamoDB (defore registering blueprints)
     dynamodb = boto3.resource('dynamodb', region_name='us-west-2')
     app.config['DYNAMODB_TABLE'] = dynamodb.Table(app.config['DYNAMODB_TABLENAME'])
     
+    # Register blueprints
     app.register_blueprint(api_blueprint, url_prefix='/api')
     
     

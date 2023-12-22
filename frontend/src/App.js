@@ -1,48 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
-import { useBackend } from './utils/useBackend';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import PostButtonPage from "./pages/PostButtonPage";
 
+import "bootstrap/dist/css/bootstrap.css";
 
-
-/**
- * React component representing the main App.
- *
- * @component
- * @return {JSX.Element} The rendered App component.
- */
 function App() {
 
-  var response = "couldn't connect to backend";
-
-  console.log('About to make GET request to /get');
-  const { data: dataResponse, error: _error, status: _status } =
-  useBackend(
-      // Stryker disable next-line all : don't test internal caching of React Query
-      ["/get"],
-      { method: "GET", url: "/get" },
-      []
-  );
-  
-  response = dataResponse;
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          response: {response}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/postbutton" element={<PostButtonPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
