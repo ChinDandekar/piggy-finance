@@ -14,7 +14,7 @@ def get_message():
     return f'Hello from Python Backend at {curDateTime}'
 
 
-@api_blueprint.route('/post_time', methods=['POST'])
+@api_blueprint.route('/post_time', methods=['POST', 'GET'])
 def post_time():
     table = current_app.config['DYNAMODB_TABLE']
     id = request.args.get('ID', default=None)
