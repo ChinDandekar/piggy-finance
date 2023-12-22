@@ -16,6 +16,8 @@ def get_message():
 
 @api_blueprint.route('/post_time', methods=['POST', 'GET'])
 def post_time():
+    current_app.logger.debug('Request URL: %s', request.url)
+    current_app.logger.debug('Request Args: %s', request.args)
     table = current_app.config['DYNAMODB_TABLE']
     id = request.args.get('ID', default=None)
     time = request.args.get('Time', default=None)
