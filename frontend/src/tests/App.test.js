@@ -6,12 +6,12 @@ import AxiosMockAdapter from "axios-mock-adapter";
 
 const queryClient = new QueryClient();
 const axiosMock = new AxiosMockAdapter(flaskApi);
-console.log('Setting up mock for /api/get');
+console.log('Setting up mock for /get');
 
 beforeEach(() => {
   axiosMock.reset();
-  axiosMock.onGet("/api/get").reply(200, "Hello from Python Backend at");
-  console.log('Mock for /api/get set up successfully');
+  axiosMock.onGet("/get").reply(200, "Hello from Python Backend at");
+  console.log('Mock for /get set up successfully');
 });
 
 test('renders response', async () => {

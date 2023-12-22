@@ -15,12 +15,12 @@ function App() {
 
   var response = "couldn't connect to backend";
 
-  console.log('About to make GET request to /api/get');
+  console.log('About to make GET request to /get');
   const { data: dataResponse, error: _error, status: _status } =
   useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/get"],
-      { method: "GET", url: "/api/get" },
+      ["/get"],
+      { method: "GET", url: "/get" },
       []
   );
   
