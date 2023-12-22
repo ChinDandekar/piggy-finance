@@ -5,20 +5,20 @@ import datetime
 
 api_blueprint = Blueprint('user', __name__)
 
-table = current_app.config['DYNAMODB_TABLE']
 
 @api_blueprint.route('/get')
 def get_message():
     curTime = time()
     curDateTime =  datetime.datetime.fromtimestamp(curTime).strftime('%Y-%m-%d %H:%M:%S')
+    current_app.logger.info(f"At get_message request, recieved {curDateTime}")
     return f'Hello from Python Backend at {curDateTime}'
 
 
 @api_blueprint.route('/post_time', methods=['POST'])
 def post_time():
-    content = request.get_json()
-    id = content['ID']
-    time = content.get('Time', datetime.datetime.now().isoformat()) 
+    table = current_app.config['DYNAMODB_TABLE']
+    id = request.args.get('ID', default=None)
+    time = request.args.get('Time', default=None)
     try:
         # Inserting the item into DynamoDB
         response = table.put_item(

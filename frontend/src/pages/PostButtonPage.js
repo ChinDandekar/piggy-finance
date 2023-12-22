@@ -11,7 +11,7 @@ export default function PostButtonPage({storybook=false}) {
 
 
     const objectToAxiosParams = () => ({
-        url: "/api/restaurants/post",
+        url: "/post_time",
         method: "POST",
         params: {
         ID: id,
@@ -28,7 +28,7 @@ export default function PostButtonPage({storybook=false}) {
         objectToAxiosParams,
         { onSuccess }, 
         // Stryker disable next-line all : hard to set up test for caching
-        ["/api/post_time"] // mutation makes this key stale so that pages relying on it reload
+        ["/post_time"] // mutation makes this key stale so that pages relying on it reload
         );
 
     const { isSuccess } = mutation
