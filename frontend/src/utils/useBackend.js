@@ -1,5 +1,4 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import axios from "axios";
 import { toast } from "react-toastify";
 import flaskApi from "./flaskApi";
 
@@ -57,7 +56,7 @@ const reportAxiosError = (error) => {
 
 const wrappedParams = async (params) => {
     try {
-        return await (await axios(params)).data;
+        return await (await flaskApi(params)).data;
     } catch (rejectedValue) {
         reportAxiosError(rejectedValue);
         throw rejectedValue;

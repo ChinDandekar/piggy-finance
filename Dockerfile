@@ -46,7 +46,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose ports (80 for Nginx and whatever your Flask app uses)
 EXPOSE 80
-Expose 8000
+Expose 8080
 
 # Run supervisord
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
