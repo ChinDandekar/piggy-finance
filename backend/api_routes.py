@@ -16,8 +16,8 @@ def get_message():
 
 @api_blueprint.route('/post_time', methods=['POST', 'GET'])
 def post_time():
-    table = current_app.config['DYNAMODB_TABLE']
     return jsonify({'message': 'Time posted successfully', 'request': request}), 200
+    table = current_app.config['DYNAMODB_TABLE']
     id = request.args.get('ID', default=None)
     time = request.args.get('Time', default=None)
     return jsonify({'message': 'Time posted successfully', 'ID': id, 'Time': time, 'request': request}), 200
