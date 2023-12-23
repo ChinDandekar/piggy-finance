@@ -6,7 +6,7 @@ run:
 	docker run -p 80:80 -p 8080:8080 piggy-finance-image
 
 kill:
-	docker kill $(docker ps -q)
+	docker kill $$(docker ps -q)
 
 dev:
 	docker-compose up
