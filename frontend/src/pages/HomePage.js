@@ -22,13 +22,14 @@ export default function HomePage() {
   );
   
   response = dataResponse;
+  window.console.log("response: " + response['message']);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          response: {response}
+          response: {response['message']}
         </p>
         <a
           className="App-link"

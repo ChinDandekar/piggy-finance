@@ -17,7 +17,7 @@ COPY frontend/. .
 RUN npm run build
 
 # Stage 2: Setting up Python with Nginx
-FROM python:3.8-alpine
+FROM python:3.10-alpine3.18
 
 # Install Nginx and supervisord
 RUN apk add --no-cache nginx supervisor
