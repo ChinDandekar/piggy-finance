@@ -29,7 +29,12 @@ SECRET_KEY = "django-insecure--c-+$$6w!x(q5mph0-e&h&0nf(q*f2i()c*ys7^#iofk1-x*5&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "https://piggy-finance.com/",
+    "https://www.piggy-finance.com/",
+    "localhost",
+    os.getenv('HOST_IP','0.0.0.0'),
+]
 
 
 # Application definition
@@ -127,13 +132,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CORS_ALLOW_ALL_ORIGINS = True
-
-# Allowed CORS origins
-# CORS_ALLOWED_ORIGINS = [
-#     "https://piggy-finance.com",
-#     "https://www.piggy-finance.com",
-#     "http://localhost:80",
-#     "http://localhost",
-#     "http://localhost:8000",
-#     "http://127.0.0.1:80",
-# ]
