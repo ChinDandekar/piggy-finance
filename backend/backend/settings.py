@@ -30,8 +30,8 @@ SECRET_KEY = "django-insecure--c-+$$6w!x(q5mph0-e&h&0nf(q*f2i()c*ys7^#iofk1-x*5&
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://piggy-finance.com/",
-    "https://www.piggy-finance.com/",
+    "piggy-finance.com",
+    "www.piggy-finance.com",
     "localhost",
     os.getenv('HOST_IP','0.0.0.0'),
 ]
