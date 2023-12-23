@@ -8,4 +8,7 @@ run:
 kill:
 	docker kill $(docker ps -q)
 
+dev:
+	docker-compose up
+
 all: build run
