@@ -24,6 +24,12 @@ package-lock.json
 backend/piggy-finance-venv/*
 backend/piggy-finance-venv
 
+## Pycache ##
+**/__pycache__/
+
+## SQlite ##
+backend/db.sqlite3
+
 ### STS ###
 .apt_generated
 .classpath
