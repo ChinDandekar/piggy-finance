@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv('DEBUG',True)
 
 
-GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI', 'https://piggy-finance.com')
+GOOGLE_REDIRECT_URI = os.getenv('SITE_DOMAIN', 'https://piggy-finance.com')
 
 # Allowed hosts to the backend
 ALLOWED_HOSTS = [

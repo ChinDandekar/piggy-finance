@@ -46,6 +46,9 @@ RUN python manage.py makemigrations
 RUN python manage.py migrate
 RUN python manage.py addgoogleapp
 
+# Register domain on Django
+RUN python manage.py setdomain
+
 # Set up Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 

@@ -11,4 +11,7 @@ kill:
 dev:
 	docker-compose up
 
+access_logs:
+	docker cp $$(docker ps -q):/tmp/. .
+
 all: build run
