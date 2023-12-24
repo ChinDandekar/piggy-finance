@@ -22,6 +22,9 @@ FROM python:3.10-alpine3.18
 # Install Nginx and supervisord
 RUN apk add --no-cache nginx supervisor
 
+# Install GCC for package cffi (django-allauth dependency)
+RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev
+
 # Create a directory for storing the logs
 RUN mkdir -p /var/log/supervisor
 
@@ -37,6 +40,11 @@ COPY backend /usr/src/app/
 # Install Python dependencies
 COPY backend/requirements.txt .
 RUN pip install -r requirements.txt
+
+# Make all migrations so sqlite3 db is set up to accept users
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+RUN python manage.py addgoogleapp
 
 # Set up Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf

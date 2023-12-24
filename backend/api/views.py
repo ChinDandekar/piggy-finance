@@ -47,3 +47,4 @@ def get_time(request):
     except Exception as e:
         logger.error(str(e))
         return JsonResponse({'error': str(e)}, status=500)
+        
