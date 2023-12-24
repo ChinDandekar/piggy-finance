@@ -28,7 +28,9 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG',True)
-print(os.getenv('MODE','cant find .env'))
+
+
+GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI', 'https://piggy-finance.com')
 
 # Allowed hosts to the backend
 ALLOWED_HOSTS = [
@@ -93,8 +95,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = f'{GOOGLE_REDIRECT_URI}/'
+LOGOUT_REDIRECT_URL = f'{GOOGLE_REDIRECT_URI}/'
 
 # Nginx settings
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
