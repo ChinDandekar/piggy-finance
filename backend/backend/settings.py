@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
     "www.piggy-finance.com",
     "localhost",
     os.getenv('HOST_IP','0.0.0.0'),
+    "127.0.0.1",
 ]
 
 
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -72,6 +74,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "backend.urls"
+
+CSRF_TRUSTED_ORIGINS = ['https://piggy-finance.com', 'https://www.piggy-finance.com']
 
 # Google OAuth settings
 

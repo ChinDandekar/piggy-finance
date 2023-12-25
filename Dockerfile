@@ -49,6 +49,9 @@ RUN python manage.py addgoogleapp
 # Register domain on Django
 RUN python manage.py setdomain
 
+# Add chinmay dandekar as super user
+RUN python manage.py addsuperuser
+
 # Set up Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
