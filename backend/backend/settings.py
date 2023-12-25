@@ -77,6 +77,25 @@ ROOT_URLCONF = "backend.urls"
 
 CSRF_TRUSTED_ORIGINS = ['https://piggy-finance.com', 'https://www.piggy-finance.com']
 
+
+# Logging settings
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
+
 # Google OAuth settings
 
 SITE_ID = 1
@@ -86,6 +105,8 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
     ]
+
+ACCOUNT_ADAPTER = 'api.adapters.custom_google_auth.CustomGoogleAccountAdapter'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
