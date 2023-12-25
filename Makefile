@@ -12,6 +12,7 @@ dev:
 	docker-compose up
 
 access_logs:
-	docker cp $$(docker ps -q):/tmp/. .
+	rm -rf tmp
+	docker cp $$(docker ps -q):/tmp .
 
 all: build run
