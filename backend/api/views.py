@@ -4,6 +4,8 @@ from django.views.decorators.http import require_http_methods
 import datetime
 import logging
 from .utils.dynamodb_utils import get_table
+from django.shortcuts import redirect
+from allauth.socialaccount.providers.google.views import oauth2_login
 
 # Set up logging (configure as needed)
 logger = logging.getLogger(__name__)
@@ -48,3 +50,13 @@ def get_time(request):
         logger.error(str(e))
         return JsonResponse({'error': str(e)}, status=500)
         
+
+def custom_google_login(request):
+    # Your custom logic here
+    logger.info("Custom Google login view called")
+    
+    oauth2_loginresponse = oauth2_login(request)
+    print(oauth2_loginresponse)
+
+    # Proceed with the standard oauth2_login view from django-allauth
+    return oauth2_loginresponse
