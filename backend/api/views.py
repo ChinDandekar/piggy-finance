@@ -14,6 +14,16 @@ logger = logging.getLogger(__name__)
 def get_message(request):
     cur_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     logger.info(f"At get_message request, received {cur_time}")
+    if request.user.is_authenticated:
+        # User is authenticated
+        full_name = request.user.get_full_name()
+        user_name = full_name if full_name else request.user.username
+
+        # User is authenticated, return a welcome message
+        return JsonResponse({'message': f'Welcome: {user_name}'})
+    else:
+        # User is not authenticated
+        return JsonResponse({'message': 'Please sign in to continue'})
     return JsonResponse({'message': f'Hello from Python Backend at {cur_time}'})
 
 @require_http_methods(["POST", "GET"])

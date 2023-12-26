@@ -38,7 +38,6 @@ ALLOWED_HOSTS = [
     "www.piggy-finance.com",
     "localhost",
     os.getenv('HOST_IP','0.0.0.0'),
-    "127.0.0.1",
 ]
 
 
