@@ -4,6 +4,7 @@ from django.views.decorators.http import require_http_methods
 import datetime
 import logging
 from .utils.dynamodb_utils import get_table
+from .utils.modify_redirect_uri import modify_redirect_uri
 from django.shortcuts import redirect
 from allauth.socialaccount.providers.google.views import oauth2_login
 
@@ -56,7 +57,9 @@ def custom_google_login(request):
     logger.info("Custom Google login view called")
     
     oauth2_loginresponse = oauth2_login(request)
-    print(oauth2_loginresponse)
+    oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
+    
+    logger.info(oauth2_loginresponse)
 
     # Proceed with the standard oauth2_login view from django-allauth
     return oauth2_loginresponse
