@@ -38,6 +38,18 @@ COPY backend /usr/src/app/
 COPY backend/requirements.txt .
 RUN pip install -r requirements.txt
 
+# Make all migrations so sqlite3 db is set up to accept users
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+RUN python manage.py addgoogleapp
+
+# Register domain on Django
+RUN python manage.py setdomain
+
+# Add chinmay dandekar as super user
+RUN python manage.py addsuperuser
+
+
 # Set up Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
