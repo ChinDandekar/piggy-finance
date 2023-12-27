@@ -1,28 +1,24 @@
-import os
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from dotenv import load_dotenv
+import os
 
 class Command(BaseCommand):
-    help = 'Create a superuser from environment variables'
+    help = 'Updates the Site domain and name'
 
     def handle(self, *args, **options):
-        # Load environment variables
-        load_dotenv()
+        load_dotenv('../../.env')
+        # Fetch the site object corresponding to your SITE_ID, usually it's 1 for the default site
+        my_site = Site.objects.get_current()
 
-        # Get superuser details from .env
-        username = os.getenv('SUPERUSER_USERNAME')
-        email = os.getenv('SUPERUSER_EMAIL')
-        password = os.getenv('SUPERUSER_PASSWORD')
+        # Update the domain name and display name if arguments are provided
+        if os.getenv('SITE_DOMAIN', None):
+            my_site.domain = os.getenv('SITE_DOMAIN')
+        if os.getenv('SITE_NAME', None):
+            my_site.name = os.getenv('SITE_NAME')
 
-        if not all([username, email, password]):
-            self.stdout.write(self.style.ERROR('Missing environment variables for superuser creation.'))
-            return
+        # Save the changes to the database
+        my_site.save()
 
-        # Check if the superuser already exists
-        if User.objects.filter(username=username).exists():
-            self.stdout.write(self.style.WARNING(f'Superuser {username} already exists. No action taken.'))
-        else:
-            # Create a new superuser
-            User.objects.create_superuser(username=username, email=email, password=password)
-            self.stdout.write(self.style.SUCCESS(f'Superuser {username} created successfully!'))
+        # Output the result
+        self.stdout.write(self.style.SUCCESS(f'Successfully updated site to {my_site.domain} with name {my_site.name}'))
