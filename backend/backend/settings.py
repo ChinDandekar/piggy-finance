@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'corsheaders',
     'api',
+    "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
@@ -67,6 +68,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
 
 ROOT_URLCONF = "backend.urls"
 
