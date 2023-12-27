@@ -58,3 +58,5 @@ build/
 compose.yml
 flasklogs/
 docker/
+tmp
+backend/api/__pycache__/

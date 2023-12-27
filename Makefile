@@ -11,4 +11,11 @@ kill:
 dev:
 	docker-compose up
 
+access_logs:
+	rm -rf tmp
+	docker cp $$(docker ps -q):/tmp .
+
+access_local_logs:
+	rm -rf tmp
+	docker cp app-node:/tmp .
 all: build run
