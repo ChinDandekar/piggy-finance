@@ -45,8 +45,8 @@ RUN pip install -r requirements.txt
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 
-# UNCOMMENT WHEN YOU START USING GOOGLE AUTH
-#RUN python manage.py addgoogleapp
+# Add Google app to Django for OAuth
+RUN python manage.py addgoogleapp
 
 # Register domain on Django
 RUN python manage.py setdomain
