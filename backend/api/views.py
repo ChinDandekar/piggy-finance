@@ -6,7 +6,9 @@ import logging
 from .utils.dynamodb_utils import get_table
 from .utils.modify_redirect_uri import modify_redirect_uri
 from django.shortcuts import redirect
-from allauth.socialaccount.providers.google.views import oauth2_login, oauth2_callback
+from allauth.socialaccount.providers.google.views import oauth2_login
+from .custom_views.CustomGoogleOauth2CallbackView import CustomGoogleOAuth2CallbackView
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 
 # Set up logging (configure as needed)
 logger = logging.getLogger(__name__)
@@ -79,7 +81,8 @@ def custom_google_callback(request):
     # Your custom logic here
     logger.info("Custom Google callback view called")
     
-    oauth2_callbackresponse = oauth2_callback(request)    
+    ouath2_callback = CustomGoogleOAuth2CallbackView.adapter_view(GoogleOAuth2Adapter)
+    oauth2_callbackresponse = ouath2_callback(request)
     logger.info(f'Here is the callback response: {oauth2_callbackresponse}')
 
     # Proceed with the standard oauth2_callback view from django-allauth
