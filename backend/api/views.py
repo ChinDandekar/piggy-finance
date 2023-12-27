@@ -4,9 +4,8 @@ from django.views.decorators.http import require_http_methods
 import datetime
 import logging
 from .utils.dynamodb_utils import get_table
-from django.contrib.sites.models import Site
-from django.contrib.sites.shortcuts import get_current_site
-from django.test.client import RequestFactory
+from allauth.socialaccount.providers.google.views import oauth2_login
+from .utils.modify_redirect_uri import modify_redirect_uri
 
 
 # Set up logging (configure as needed)
@@ -52,6 +51,17 @@ def get_time(request):
         logger.error(str(e))
         return JsonResponse({'error': str(e)}, status=500)
 
-def get_cur_site(request):
-    current_site = get_current_site(request)
-    return JsonResponse({'message': f'Current site is {current_site.domain} with name {current_site.name}'})
+@require_http_methods(["POST", "GET"])
+def custom_google_login(request):
+    # Your custom logic here
+    logger.info("Custom Google login view called")
+    
+    oauth2_loginresponse = oauth2_login(request)
+    if(oauth2_loginresponse.status_code != 302):
+        return oauth2_loginresponse
+    #oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
+    
+    logger.info(oauth2_loginresponse)
+
+    # Proceed with the standard oauth2_login view from django-allauth
+    return oauth2_loginresponse

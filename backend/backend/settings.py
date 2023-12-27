@@ -33,7 +33,10 @@ ALLOWED_HOSTS = [
     "piggy-finance.com",
     "www.piggy-finance.com",
     "localhost",
+    "localhost:8080",
     os.getenv('HOST_IP','0.0.0.0'),
+    "testserver",
+    "127.0.0.1",
 ]
 
 SITE_ID = 1
@@ -113,6 +116,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "backend.wsgi.application"
 
 # Google OAuth settings
+
+GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI')
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
