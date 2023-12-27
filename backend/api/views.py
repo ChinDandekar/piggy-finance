@@ -62,28 +62,3 @@ def get_time(request):
     except Exception as e:
         logger.error(str(e))
         return JsonResponse({'error': str(e)}, status=500)
-        
-
-def custom_google_login(request):
-    # Your custom logic here
-    logger.info("Custom Google login view called")
-    
-    oauth2_loginresponse = oauth2_login(request)
-    oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
-    
-    logger.info(oauth2_loginresponse)
-
-    # Proceed with the standard oauth2_login view from django-allauth
-    return oauth2_loginresponse
-
-
-def custom_google_callback(request):
-    # Your custom logic here
-    logger.info("Custom Google callback view called")
-    
-    ouath2_callback = CustomGoogleOAuth2CallbackView.adapter_view(GoogleOAuth2Adapter)
-    oauth2_callbackresponse = ouath2_callback(request)
-    logger.info(f'Here is the callback response: {oauth2_callbackresponse}')
-
-    # Proceed with the standard oauth2_callback view from django-allauth
-    return oauth2_callbackresponse

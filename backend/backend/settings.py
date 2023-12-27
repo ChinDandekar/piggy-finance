@@ -105,7 +105,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
     ]
 
-ACCOUNT_ADAPTER = 'api.adapters.custom_google_auth.CustomGoogleAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'api.adapters.CustomSocialAccountAdapter'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
