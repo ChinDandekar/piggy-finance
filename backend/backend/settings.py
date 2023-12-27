@@ -14,7 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-load_dotenv('../.env')
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure--c-+$$6w!x(q5mph0-e&h&0nf(q*f2i()c*ys7^#iofk1-x*5&"
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG',True)
 
 ALLOWED_HOSTS = [
     "piggy-finance.com",
@@ -43,14 +43,17 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    "django.contrib.sites",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'corsheaders',
+    'api'
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -61,6 +64,26 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "backend.urls"
+
+CSRF_TRUSTED_ORIGINS = ['https://piggy-finance.com', 'https://www.piggy-finance.com']
+
+
+# Logging settings
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
 
 TEMPLATES = [
     {
@@ -79,6 +102,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "backend.wsgi.application"
+
+
+# Nginx settings
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 
 # DynamoDB settings
@@ -106,6 +134,15 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+#Sqlite3 settings for admin
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Database engine
+        'NAME': BASE_DIR / 'db.sqlite3',         # Database name
+    }
+}
 
 
 # Internationalization
