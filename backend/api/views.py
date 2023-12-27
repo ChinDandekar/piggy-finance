@@ -4,8 +4,6 @@ from django.views.decorators.http import require_http_methods
 import datetime
 import logging
 from .utils.dynamodb_utils import get_table
-from .utils.modify_redirect_uri import modify_redirect_uri
-from django.shortcuts import redirect
 from allauth.socialaccount.providers.google.views import oauth2_login
 from .custom_views.CustomGoogleOauth2CallbackView import CustomGoogleOAuth2CallbackView
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
