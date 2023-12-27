@@ -4,6 +4,10 @@ from django.views.decorators.http import require_http_methods
 import datetime
 import logging
 from .utils.dynamodb_utils import get_table
+from django.contrib.sites.models import Site
+from django.contrib.sites.shortcuts import get_current_site
+from django.test.client import RequestFactory
+
 
 # Set up logging (configure as needed)
 logger = logging.getLogger(__name__)
@@ -47,3 +51,7 @@ def get_time(request):
     except Exception as e:
         logger.error(str(e))
         return JsonResponse({'error': str(e)}, status=500)
+
+def get_cur_site(request):
+    current_site = get_current_site(request)
+    return JsonResponse({'message': f'Current site is {current_site.domain} with name {current_site.name}'})

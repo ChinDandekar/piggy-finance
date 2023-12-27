@@ -6,5 +6,6 @@ urlpatterns = [
     path('get', views.get_message, name='get_message'),
     path('post_time', views.post_time, name='post_time'),
     path('get_time', views.get_time, name='get_time'),
+    path('get_cur_site', views.get_cur_site, name='get_cur_site'),
     path("", include("allauth.urls"))
 ]
