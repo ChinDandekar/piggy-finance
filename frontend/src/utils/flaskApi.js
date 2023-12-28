@@ -5,6 +5,7 @@ window.console.log('API URL:', apiUrl);
 
 const flaskApi = axios.create({
     baseURL: apiUrl, // Replace with your Flask app's URL
+    withCredentials: true,
   });
 
 export default flaskApi;

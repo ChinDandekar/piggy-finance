@@ -12,7 +12,7 @@ def modify_redirect_uri(url):
 
     # Determine the new redirect URI based on the mode
     url = os.getenv('GOOGLE_REDIRECT_URI')
-    new_redirect_uri = url + 'api/google/login/callback/'
+    new_redirect_uri = url + '/api/google/login/callback/'
 
     # Update the redirect_uri parameter
     query_params['redirect_uri'] = [new_redirect_uri]  # Wrap in a list as parse_qs gives a list

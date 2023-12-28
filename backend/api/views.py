@@ -16,6 +16,18 @@ def get_message(request):
     logger.info(f"At get_message request, received {cur_time}")
     return JsonResponse({'message': f'Hello from Python Backend at {cur_time}'})
 
+def is_auth(request):
+    if request.user.is_authenticated:
+        # User is authenticated
+        full_name = request.user.get_full_name()
+        user_name = full_name if full_name else request.user.username
+
+        # User is authenticated, return a welcome message
+        return JsonResponse({'message': f'Welcome: {user_name}'})
+    else:
+        # User is not authenticated
+        return JsonResponse({'message': 'Please sign in to continue'})
+
 @require_http_methods(["POST", "GET"])
 def post_time(request):
     # Assuming you have set up DynamoDB and have a table instance
@@ -59,7 +71,10 @@ def custom_google_login(request):
     oauth2_loginresponse = oauth2_login(request)
     if(oauth2_loginresponse.status_code != 302):
         return oauth2_loginresponse
-    #oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
+    
+    if request.method == 'POST':
+        oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
+        logger.info(f"Modified redirect URI to: {oauth2_loginresponse['Location']}")
     
     logger.info(oauth2_loginresponse)
 
