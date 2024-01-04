@@ -7,7 +7,7 @@ This website will allow users to log in via Google OAuth, and connect to credit 
 
 # Technologies
 
-This website was built using React.js for the frontend and Python Django for the backend. Google OAuth is handled by Django All-Auth. These two components communicate over HTTPS using REST API. The website is hosted on an AWS EC2 instance. CDN is handled by AWS Cloudfront and AWS Route 53. Route 53 is also the provider of the SSL certificate that this website uses. It connects to a AWS DynamoDB database where it stores data.
+This website was built using React.js for the frontend and Python Django for the backend. Google OAuth is handled by Django All-Auth. These two components communicate over HTTPS using REST API. The website is hosted on an AWS EC2 instance. CDN is handled by AWS Cloudfront and AWS Route 53. Amazon Certificate Manager is also the provider of the SSL certificate that this website uses. It connects to a AWS DynamoDB database where it stores data.
 
 This website is containerized in one container using Docker, and uses an Nginx reverse proxy to route appropriate requests to the backend. It uses Supervisord to manage running both the front and backend in one container.
 
