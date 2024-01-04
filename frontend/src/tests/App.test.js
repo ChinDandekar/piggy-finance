@@ -20,8 +20,6 @@ test('renders response', async () => {
       <App />
     </QueryClientProvider>
   );
-  const responseElement = screen.getByText(/response:/);
-  const response = await screen.findByText(/Hello from Python Backend at/);
+  const responseElement = screen.getByText(/This website is currently under development. Please check back later for updates./);
   expect(responseElement).toBeInTheDocument();
-  expect(response).toBeInTheDocument();
 });

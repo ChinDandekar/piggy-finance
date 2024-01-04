@@ -1,4 +1,4 @@
-import under_construction from '../assets/under-construction.png';
+import piggy from '../assets/piggy-construction.png';
 import { useBackend } from '../utils/useBackend';
 import '../App.css';
 
@@ -27,7 +27,7 @@ export default function HomePage() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={under_construction} className="App-logo" alt="logo" />
+        <img src={piggy} className="App-logo" alt="logo" />
         <p>
           This website is currently under development. Please check back later for updates.
         </p>
