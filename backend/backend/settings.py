@@ -60,6 +60,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'api.middleware.SocialAuthDebugMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
@@ -92,6 +93,10 @@ LOGGING = {
         '': {
             'handlers': ['console'],
             'level': 'INFO',
+        },
+        'allauth': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
         },
     },
 }
