@@ -1,4 +1,4 @@
-import logo from '../logo.svg';
+import under_construction from '../assets/under-construction.png';
 import { useBackend } from '../utils/useBackend';
 import '../App.css';
 
@@ -27,17 +27,17 @@ export default function HomePage() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={under_construction} className="App-logo" alt="logo" />
         <p>
-          response: {response['message']}
+          This website is currently under development. Please check back later for updates.
         </p>
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          className="Repo-link"
+          href="https://github.com/ChinDandekar/piggy-finance"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          GitHub Repository
         </a>
       </header>
     </div>
