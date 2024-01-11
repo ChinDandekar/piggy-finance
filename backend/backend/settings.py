@@ -124,6 +124,8 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI')
 
+SOCIALACCOUNT_ADAPTER = "api.adapter.SocialAccountAdapter"
+
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "SCOPE": [
