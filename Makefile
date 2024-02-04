@@ -18,4 +18,8 @@ access_logs:
 access_local_logs:
 	rm -rf tmp
 	docker cp app-node:/tmp .
+
+access_shell:
+	docker exec -it $$(docker ps -q) sh
+
 all: build run
