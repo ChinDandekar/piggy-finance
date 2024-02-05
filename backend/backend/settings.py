@@ -148,10 +148,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 # Nginx settings
-if DEBUG:
-    SECURE_PROXY_SSL_HEADER = 'https'
-else:
-     SECURE_PROXY_SSL_HEADER = 'http'
+SECURE_PROXY_SSL_HEADER = ('X-Forwarded-Proto', 'https')
 print(SECURE_PROXY_SSL_HEADER)
 USE_X_FORWARDED_HOST = True
 
