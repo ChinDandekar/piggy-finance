@@ -6,7 +6,7 @@ import logging
 from .utils.dynamodb_utils import get_table
 from allauth.socialaccount.providers.google.views import oauth2_login
 from .utils.modify_redirect_uri import modify_redirect_uri
-
+import pdb
 
 # Set up logging (configure as needed)
 logger = logging.getLogger(__name__)
@@ -67,7 +67,7 @@ def get_time(request):
 def custom_google_login(request):
     # Your custom logic here
     logger.info("Custom Google login view called")
-    
+    pdb.set_trace()
     oauth2_loginresponse = oauth2_login(request)
     if(oauth2_loginresponse.status_code != 302):
         return oauth2_loginresponse
