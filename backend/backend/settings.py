@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
     os.getenv('HOST_IP','0.0.0.0'),
     "testserver",
     "127.0.0.1",
+    "google.com"
 ]
 
 SITE_ID = 1
@@ -153,7 +154,7 @@ SECURE_PROXY_SSL_HEADER = ('X-Forwarded-Proto', 'https')
 if PRODUCTION!='dev':
     os.environ['HTTPS'] = "on"
     os.environ['wsgi.url_scheme'] = 'https'
-print(SECURE_PROXY_SSL_HEADER)
+print(f'SSL_HEADER: {SECURE_PROXY_SSL_HEADER}, os.HTTPS: {os.environ['HTTPS']}, os.wsgi.url_scheme: {os.environ['wsgi.url_scheme']}')
 USE_X_FORWARDED_HOST = True
 
 

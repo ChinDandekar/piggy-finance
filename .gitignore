@@ -59,5 +59,4 @@ compose.yml
 flasklogs/
 docker/
 tmp
-backend/api/__pycache__/
-backend/db.sqlite3
+/backend/db.sqlite3
