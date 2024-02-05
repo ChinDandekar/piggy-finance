@@ -154,6 +154,9 @@ SECURE_PROXY_SSL_HEADER = ('X-Forwarded-Proto', 'https')
 if PRODUCTION!='dev':
     os.environ['HTTPS'] = "on"
     os.environ['wsgi.url_scheme'] = 'https'
+else:
+    os.environ['HTTPS'] = "off"
+    os.environ['wsgi.url_scheme'] = 'http'
 print(f'SSL_HEADER: {SECURE_PROXY_SSL_HEADER}, os.HTTPS: {os.environ['HTTPS']}, os.wsgi.url_scheme: {os.environ['wsgi.url_scheme']}')
 USE_X_FORWARDED_HOST = True
 
