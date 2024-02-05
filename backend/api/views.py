@@ -63,19 +63,19 @@ def get_time(request):
         logger.error(str(e))
         return JsonResponse({'error': str(e)}, status=500)
 
-@require_http_methods(["POST", "GET"])
-def custom_google_login(request):
-    # Your custom logic here
-    logger.info("Custom Google login view called")
-    oauth2_loginresponse = oauth2_login(request)
-    if(oauth2_loginresponse.status_code != 302):
-        return oauth2_loginresponse
+# @require_http_methods(["POST", "GET"])
+# def custom_google_login(request):
+#     # Your custom logic here
+#     logger.info("Custom Google login view called")
+#     oauth2_loginresponse = oauth2_login(request)
+#     if(oauth2_loginresponse.status_code != 302):
+#         return oauth2_loginresponse
     
-    if request.method == 'POST':
-        oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
-        logger.info(f"Modified redirect URI to: {oauth2_loginresponse['Location']}")
+#     if request.method == 'POST':
+#         oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
+#         logger.info(f"Modified redirect URI to: {oauth2_loginresponse['Location']}")
     
-    logger.info(oauth2_loginresponse)
+#     logger.info(oauth2_loginresponse)
 
-    # Proceed with the standard oauth2_login view from django-allauth
-    return oauth2_loginresponse
+#     # Proceed with the standard oauth2_login view from django-allauth
+#     return oauth2_loginresponse
