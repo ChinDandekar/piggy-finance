@@ -79,3 +79,8 @@ def get_time(request):
 
 #     # Proceed with the standard oauth2_login view from django-allauth
 #     return oauth2_loginresponse
+
+@require_http_methods(["GET"])
+def get_absolute_uri(request):
+    pdb.set_trace()
+    return JsonResponse({'message': f"{request.build_absolute_uri('/')}"})
