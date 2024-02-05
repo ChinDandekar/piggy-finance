@@ -157,7 +157,7 @@ if PRODUCTION!='dev':
 else:
     os.environ['HTTPS'] = "off"
     os.environ['wsgi.url_scheme'] = 'http'
-print(f'SSL_HEADER: {SECURE_PROXY_SSL_HEADER}, os.HTTPS: {os.environ['HTTPS']}, os.wsgi.url_scheme: {os.environ['wsgi.url_scheme']}')
+print(f'SSL_HEADER: {SECURE_PROXY_SSL_HEADER}, os.HTTPS: {os.environ["HTTPS"]}, os.wsgi.url_scheme: {os.environ["wsgi.url_scheme"]}')
 USE_X_FORWARDED_HOST = True
 
 
