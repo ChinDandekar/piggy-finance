@@ -82,5 +82,4 @@ def get_time(request):
 
 @require_http_methods(["GET"])
 def get_absolute_uri(request):
-    pdb.set_trace()
     return JsonResponse({'message': f"{request.build_absolute_uri('/')}"})

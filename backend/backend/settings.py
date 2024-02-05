@@ -28,6 +28,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG',True)
+PRODUCTION = os.getenv('MODE',False)
 
 ALLOWED_HOSTS = [
     "piggy-finance.com",
@@ -149,6 +150,9 @@ LOGOUT_REDIRECT_URL = "/"
 
 # Nginx settings
 SECURE_PROXY_SSL_HEADER = ('X-Forwarded-Proto', 'https')
+if PRODUCTION!='dev':
+    os.environ['HTTPS'] = "on"
+    os.environ['wsgi.url_scheme'] = 'https'
 print(SECURE_PROXY_SSL_HEADER)
 USE_X_FORWARDED_HOST = True
 
