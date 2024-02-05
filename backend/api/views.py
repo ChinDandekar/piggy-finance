@@ -67,7 +67,6 @@ def get_time(request):
 def custom_google_login(request):
     # Your custom logic here
     logger.info("Custom Google login view called")
-    pdb.set_trace()
     oauth2_loginresponse = oauth2_login(request)
     if(oauth2_loginresponse.status_code != 302):
         return oauth2_loginresponse
