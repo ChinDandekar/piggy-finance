@@ -11,10 +11,7 @@ COPY frontend/package*.json ./
 RUN npm install
 
 # Copy app source
-COPY frontend/. .
-
-# Build app
-RUN npm run build
+COPY frontend/build ./build
 
 # Stage 2: Setting up Python with Nginx
 FROM python:3.10-alpine3.18
