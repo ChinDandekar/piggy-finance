@@ -1,31 +1,20 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  margin-top: 1%; /* To push the rest of the content below the fixed header */
+  background-color: #b3c3fb;
 }
 
 .App-header {
-  background-color: #b3c3fb;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
+  width: 100vh;
+  height: 1vh; /* 10% of the viewport height */
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 100; /* Ensure it's above other content */
 }
 
-.Repo-link {
-  color: black;
+/* Add some top padding to your main content container to ensure it doesn't overlap with the fixed navbar */
+.Container {
+  padding-top: 1vh; /* Same as the height of the header */
 }
 
 /* @keyframes App-logo-spin {
@@ -36,3 +25,100 @@
     transform: rotate(360deg);
   }
 } */
+
+
+
+.Home {
+  text-align: center;
+  background-color: #b3c3fb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.loggedin-Home {
+  text-align: center;
+  background-color: #b3c3fb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: normal;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.Home-logo {
+  height: 40vh;
+  pointer-events: none;
+  align-items: center;
+}
+
+.login-button-wrapper {
+  display: inline-block; /* Wrap content */
+  padding: 5px; /* Space between the wrapper border and the button */
+  background-color: #b3c3fb; /* Light grey background for the wrapper */
+  border-radius: 8px; /* Rounded corners for the wrapper */
+  width: 100%; /* Ensures the button container spans the full width */
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  align-items: end; /* Aligns the button container to the end (bottom) of its parent (.Home) */
+  padding-bottom: 20vh; /* Adjust this value to move the button up into the bottom third of the screen */
+}
+
+
+.login-button {
+  display: block; /* Use block to make the <a> tag fill the wrapper */
+  background-color: #6480E5; /* Google's blue color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding inside the button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Removes underline from the link */
+  font-size: 16px; /* Font size */
+  border-radius: 5px; /* Rounded corners for the button */
+  border: none; /* No border for the button */
+  cursor: pointer; /* Hand cursor on hover */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth background color and scale transition */
+}
+
+.login-button:hover {
+  background-color: #6480E5; /* Darker shade of blue on hover */
+  transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+.logout-button-wrapper {
+  display: inline-block; /* Wrap content */
+  padding: 5px; /* Space between the wrapper border and the button */
+  background-color: #b3c3fb; /* Light grey background for the wrapper */
+  border-radius: 8px; /* Rounded corners for the wrapper */
+  width: 100%; /* Ensures the button container spans the full width */
+  display: flex;
+  justify-content: right; /* Center the button horizontally */
+  align-items: end; /* Aligns the button container to the end (bottom) of its parent (.Home) */
+  padding-bottom: 0vh; /* Adjust this value to move the button up into the bottom third of the screen */
+}
+
+.logout-button {
+  display: block; /* Use block to make the <a> tag fill the wrapper */
+  background-color: #6480E5; /* Google's blue color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding inside the button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Removes underline from the link */
+  font-size: 16px; /* Font size */
+  border-radius: 5px; /* Rounded corners for the button */
+  border: none; /* No border for the button */
+  cursor: pointer; /* Hand cursor on hover */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth background color and scale transition */
+}
+
+.logout-button:hover {
+  background-color: #6480E5; /* Darker shade of blue on hover */
+  transform: scale(1.05); /* Slightly increase size on hover */
+}

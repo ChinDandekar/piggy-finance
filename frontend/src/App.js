@@ -9,8 +9,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage/>} />
         <Route exact path="/postbutton" element={<PostButtonPage />} />
+        <Route exact path="/home" element = {<HomePage/>} />
       </Routes>
     </BrowserRouter>
   );

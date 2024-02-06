@@ -1,0 +1,34 @@
+.logout-container {
+    background-color: #b3c3fb; /* The blue background color */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  h1 {
+    color: blue; /* Assuming a white color for the text */
+    margin-bottom: 20px; /* Space between the title and the message */
+  }
+  
+  p {
+    color: #fff; /* White text for the message */
+    margin-bottom: 30px; /* Space between the message and the button */
+  }
+  
+  .logout-button {
+    background-color: #f0f0f0; /* Light grey background for the button */
+    color: #333; /* Darker text color for the button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+  }
+  

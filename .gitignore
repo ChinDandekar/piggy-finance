@@ -1,6 +1,3 @@
-## emacs ##
-*~
-
 # Stryker reports
 
 frontend/.stryker-tmp
@@ -21,9 +18,7 @@ frontend/node_modules
 
 /target
 
-## Python venv ##
-backend/piggy-finance-venv/*
-backend/piggy-finance-venv
+#we want to have the build
 
 ### STS ###
 .apt_generated
@@ -40,24 +35,21 @@ backend/piggy-finance-venv
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+
 
 ### VS Code ###
 .vscode/
 
 ### Local Configuration ###
 .env
+.env_deploy
 .DS_Store
 compose.yml
 flasklogs/
 docker/
 tmp
 /backend/db.sqlite3
+
+
+# we want build
+!frontend/build

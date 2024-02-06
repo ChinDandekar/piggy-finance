@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piggy Finance</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .logout-container {
+            background-color: #b3c3fb;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: black;
+            margin-bottom: 30px;
+        }
+
+        .logout-button {
+            background-color: #6480E5; /* Google's blue color */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Padding inside the button */
+            text-align: center; /* Center the text */
+            text-decoration: none; /* Removes underline from the link */
+            font-size: 16px; /* Font size */
+            border-radius: 5px; /* Rounded corners for the button */
+            border: none; /* No border for the button */
+            cursor: pointer; /* Hand cursor on hover */
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth background color and scale transition */
+        }
+
+        .logout-button:hover {
+            background-color: #6480E5; /* Darker shade of blue on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <h1>Goodbye!</h1>
+        <p>Are you sure you want to sign out?</p>
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Sign Out</button>
+        </form>
+    </div>
+</body>
+</html>

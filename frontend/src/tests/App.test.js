@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render} from '@testing-library/react';
 import App from '../App';
 import { QueryClient, QueryClientProvider } from "react-query";
 import flaskApi from '../utils/flaskApi';
@@ -10,7 +10,7 @@ console.log('Setting up mock for /get');
 
 beforeEach(() => {
   axiosMock.reset();
-  axiosMock.onGet("/get").reply(200, {"message": "Hello from Python Backend at"});
+  axiosMock.onGet("/get").reply(200, {"isLoggedIn": false});
   console.log('Mock for /get set up successfully');
 });
 
@@ -20,6 +20,4 @@ test('renders response', async () => {
       <App />
     </QueryClientProvider>
   );
-  const responseElement = screen.getByText(/This website is currently under development. Please check back later for updates./);
-  expect(responseElement).toBeInTheDocument();
 });

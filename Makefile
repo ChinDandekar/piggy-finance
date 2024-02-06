@@ -1,4 +1,9 @@
 # Makefile to make building and running the docker container easier
+
+build_frontend:
+	cd frontend && mv .env .env_local && mv .env_deploy .env && npm run build && mv .env .env_deploy && mv .env_local .env
+
+
 build_local: 
 	docker build -t piggy-finance-image .
 
