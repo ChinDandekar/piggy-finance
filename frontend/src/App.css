@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 } */
+
+
+
+.Home {
+  text-align: center;
+  background-color: #b3c3fb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.Home-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.button-wrapper {
+  display: inline-block; /* Wrap content */
+  padding: 5px; /* Space between the wrapper border and the button */
+  background-color: #b3c3fb; /* Light grey background for the wrapper */
+  border-radius: 8px; /* Rounded corners for the wrapper */
+  width: 100%; /* Ensures the button container spans the full width */
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  align-items: end; /* Aligns the button container to the end (bottom) of its parent (.Home) */
+  padding-bottom: 20vh; /* Adjust this value to move the button up into the bottom third of the screen */
+}
+
+
+.login-button {
+  display: block; /* Use block to make the <a> tag fill the wrapper */
+  background-color: #6480E5; /* Google's blue color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding inside the button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Removes underline from the link */
+  font-size: 16px; /* Font size */
+  border-radius: 5px; /* Rounded corners for the button */
+  border: none; /* No border for the button */
+  cursor: pointer; /* Hand cursor on hover */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth background color and scale transition */
+}
+
+.login-button:hover {
+  background-color: #6480E5; /* Darker shade of blue on hover */
+  transform: scale(1.05); /* Slightly increase size on hover */
+}

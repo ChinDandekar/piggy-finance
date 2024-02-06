@@ -1,6 +1,8 @@
 import piggy from '../assets/piggy-construction.png';
+import { TypeAnimation } from 'react-type-animation';
 import { useBackend } from '../utils/useBackend';
 import '../App.css';
+import { LoginButton } from '../components/loginbutton';
 
 /**
  * React component representing the main App.
@@ -12,7 +14,6 @@ export default function HomePage() {
 
   var response = "couldn't connect to backend";
 
-  console.log('About to make GET request to /get');
   const { data: dataResponse, error: _error, status: _status } =
   useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
@@ -22,23 +23,46 @@ export default function HomePage() {
   );
   
   response = dataResponse;
-  window.console.log("response: " + response['message']);
+  window.console.log("response: " + response['isLoggedIn']);
 
+
+
+  if(!response.isLoggedIn)
+  {
+      return (
+        <div className="Home">
+        <header className="Home-header">
+        <TypeAnimation
+          sequence={[
+            // Same substring at the start will only be typed once, initially
+            'Welcome to Piggy Finance, no need to break the piggy bank',
+            1000,
+            'Welcome to Piggy Finance, turning your financial squeals into financial deals!',
+            1000,
+            'Welcome to Piggy Finance, your favorite pig mascot',
+            1000,
+            'Welcome to Piggy Finance, your personal financial planner',
+            1000,
+          ]}
+          speed={50}
+          style={{ fontSize: '2em' }}
+          repeat={0}
+        />
+        </header>
+        <div className="button-container">
+        <LoginButton />
+      </div>
+      </div>
+      );
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={piggy} className="App-logo" alt="logo" />
+    <div className="Home">
+      <header className="Home-header">
+        <img src={piggy} className="Home-logo" alt="logo" />
         <p>
-          This website is currently under development. Please check back later for updates.
+          Welcome, {response.name}
         </p>
-        <a
-          className="Repo-link"
-          href="https://github.com/ChinDandekar/piggy-finance"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub Repository
-        </a>
       </header>
     </div>
   );

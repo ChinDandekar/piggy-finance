@@ -23,10 +23,10 @@ def is_auth(request):
         user_name = full_name if full_name else request.user.username
 
         # User is authenticated, return a welcome message
-        return JsonResponse({'message': f'Welcome: {user_name}'})
+        return JsonResponse({'isLoggedIn': True, 'name': user_name})
     else:
         # User is not authenticated
-        return JsonResponse({'message': 'Please sign in to continue'})
+        return JsonResponse({'isLoggedIn': False})
 
 @require_http_methods(["POST", "GET"])
 def post_time(request):
@@ -63,22 +63,22 @@ def get_time(request):
         logger.error(str(e))
         return JsonResponse({'error': str(e)}, status=500)
 
-# @require_http_methods(["POST", "GET"])
-# def custom_google_login(request):
-#     # Your custom logic here
-#     logger.info("Custom Google login view called")
-#     oauth2_loginresponse = oauth2_login(request)
-#     if(oauth2_loginresponse.status_code != 302):
-#         return oauth2_loginresponse
+@require_http_methods(["POST", "GET"])
+def custom_google_login(request):
+    # Your custom logic here
+    logger.info("Custom Google login view called")
+    oauth2_loginresponse = oauth2_login(request)
+    # if(oauth2_loginresponse.status_code != 302):
+    #     return oauth2_loginresponse
     
-#     if request.method == 'POST':
-#         oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
-#         logger.info(f"Modified redirect URI to: {oauth2_loginresponse['Location']}")
+    # if request.method == 'POST':
+    #     oauth2_loginresponse['Location'] = modify_redirect_uri(oauth2_loginresponse.url)
+    #     logger.info(f"Modified redirect URI to: {oauth2_loginresponse['Location']}")
     
-#     logger.info(oauth2_loginresponse)
+    logger.info(oauth2_loginresponse)
 
-#     # Proceed with the standard oauth2_login view from django-allauth
-#     return oauth2_loginresponse
+    # Proceed with the standard oauth2_login view from django-allauth
+    return oauth2_loginresponse
 
 @require_http_methods(["GET"])
 def get_absolute_uri(request):
