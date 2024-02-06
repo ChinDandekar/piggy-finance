@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv
-import socket
 import os
 
 load_dotenv()
@@ -36,7 +35,7 @@ ALLOWED_HOSTS = [
     "www.piggy-finance.com",
     "localhost",
     "localhost:8080",
-    socket.gethostbyname(socket.gethostname()),
+    os.getenv('HOST_IP','0.0.0.0'),
     "testserver",
     "127.0.0.1",
     "google.com"

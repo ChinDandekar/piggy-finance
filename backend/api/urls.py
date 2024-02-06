@@ -10,3 +10,4 @@ urlpatterns = [
     path("", include("allauth.urls")),
     path('absolute_uri', views.get_absolute_uri, name='get_absolute_uri')
 ]
+

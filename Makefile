@@ -1,5 +1,10 @@
 # Makefile to make building and running the docker container easier
-build: 
+build_local: 
+	docker build -t piggy-finance-image .
+
+build:
+	rm nginx.conf
+	mv nginx_ec2.conf nginx.conf
 	docker build -t piggy-finance-image .
 
 run:
