@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Piggy Finance{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    {% load static %}
+    <link href="{% static 'css/piggy.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        <!-- Your page content will go here -->
+        {% endblock %}
+    </div>
+    <style>
+        container {
+            background-color: #b3c3fb; /* The blue background color */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          }
+    <style>
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

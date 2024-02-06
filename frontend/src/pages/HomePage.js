@@ -3,6 +3,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { useBackend } from '../utils/useBackend';
 import '../App.css';
 import { LoginButton } from '../components/loginbutton';
+import BasicLayout from '../layouts/BasicLayout';
 
 /**
  * React component representing the main App.
@@ -57,7 +58,8 @@ export default function HomePage() {
   }
   
   return (
-    <div className="Home">
+    <BasicLayout>
+    <div className="loggedin-Home">
       <header className="Home-header">
         <img src={piggy} className="Home-logo" alt="logo" />
         <p>
@@ -65,5 +67,6 @@ export default function HomePage() {
         </p>
       </header>
     </div>
+    </BasicLayout>
   );
 }
