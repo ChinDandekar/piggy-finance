@@ -4,3 +4,5 @@ werkzeug==2.0.1
 gunicorn==21.2.0
 boto3==1.34.6
 python-dotenv==1.0.0
+django-allauth==0.59.0
+pdbpp

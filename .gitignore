@@ -15,6 +15,7 @@ frontend/storybook-static
 
 package-lock.json
 !frontend/package-lock.json
+frontend/node_modules
 
 # Maven
 
@@ -59,4 +60,4 @@ compose.yml
 flasklogs/
 docker/
 tmp
-backend/api/__pycache__/
+/backend/db.sqlite3

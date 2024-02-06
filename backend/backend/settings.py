@@ -28,13 +28,20 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG',True)
+PRODUCTION = os.getenv('MODE',False)
 
 ALLOWED_HOSTS = [
     "piggy-finance.com",
     "www.piggy-finance.com",
     "localhost",
+    "localhost:8080",
     os.getenv('HOST_IP','0.0.0.0'),
+    "testserver",
+    "127.0.0.1",
+    "google.com"
 ]
+
+print(ALLOWED_HOSTS)
 
 SITE_ID = 1
 
@@ -49,13 +56,19 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'corsheaders',
-    'api'
+    'api',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 ]
 
 MIDDLEWARE = [
+    'api.middleware.SocialAuthDebugMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -63,6 +76,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
 
 ROOT_URLCONF = "backend.urls"
 
@@ -83,9 +98,14 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'INFO',
         },
+        'allauth': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
     },
 }
 
+# Templates
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -104,9 +124,42 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
+# Google OAuth settings
+
+GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI')
+
+SOCIALACCOUNT_ADAPTER = "api.adapter.SocialAccountAdapter"
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online"
+        }
+    }
+}
+
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Nginx settings
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('X-Forwarded-Proto', 'https')
+if PRODUCTION!='dev':
+    os.environ['HTTPS'] = "on"
+    os.environ['wsgi.url_scheme'] = 'https'
+else:
+    os.environ['HTTPS'] = "off"
+    os.environ['wsgi.url_scheme'] = 'http'
+print(f'SSL_HEADER: {SECURE_PROXY_SSL_HEADER}, os.HTTPS: {os.environ["HTTPS"]}, os.wsgi.url_scheme: {os.environ["wsgi.url_scheme"]}')
 USE_X_FORWARDED_HOST = True
 
 
@@ -168,5 +221,12 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# CORS settings
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    'x-xsrf-token',
+]
