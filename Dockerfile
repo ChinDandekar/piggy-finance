@@ -4,11 +4,6 @@ FROM node:14.15.4-alpine as build
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY frontend/package*.json ./
-
-# Install dependencies
-RUN npm install
 
 # Copy app source
 COPY frontend/build ./build
