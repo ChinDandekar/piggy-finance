@@ -19,7 +19,7 @@ This website is containerized in one container using Docker, and uses an Nginx r
 - [X] INFRASTRUCTURE: Run website on AWS EC2 instance
 - [X] INFRASTRUCTURE: Setup CDN for the website
 - [X] INFRASTRUCTURE: Connect to DynamoDB
-- [ ] INFRASTRUCTURE: Setup Google OAuth (In progress)
+- [X] INFRASTRUCTURE: Setup Google OAuth (In progress)
 - [ ] FEATURE: Setup Plaid Auth (Dev version)
 - [ ] FEATURE: Create option to upload data manually 
 - [ ] FEATURE: Create ML model to predict next months cost
